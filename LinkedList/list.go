@@ -11,8 +11,8 @@ type Gen interface {
 }
 
 type Node[T Gen] struct {
-	value T
-	next  *Node[T]
+	Value T
+	Next  *Node[T]
 }
 
 type Link[T Gen] struct {

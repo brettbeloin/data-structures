@@ -20,14 +20,18 @@ func (n *Stack[T]) Get(idx int) T {
 func (n *Stack[T]) Contains(val T) bool {
 	curNode := n.head
 
-	if curNode.value == val {
+	if curNode.Value == val {
 		return true
-	} else if n.tail.value == val {
+	} else if n.tail.Value == val {
 		return true
 	}
 
 	for i := 0; i < n.count; i++ {
+		curNode = curNode.Next
 
+		if curNode.Value == val {
+			return true
+		}
 	}
 	return false
 }
