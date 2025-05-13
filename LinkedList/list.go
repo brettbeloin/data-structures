@@ -1,109 +1,173 @@
 package LinkedList
 
-type gen interface {
+import (
+	"fmt"
+	"strings"
+)
+
+// gen is a type constraint for int, string, or float64
+type Gen interface {
 	~int | ~string | ~float64
 }
 
-type node[T gen] struct {
+type Node[T Gen] struct {
 	value T
-	next  *node[T]
+	next  *Node[T]
 }
 
-type Link[T gen] struct {
-	head *node[T]
-	tail *node[T]
-
-	// Returns the length of the list
-	count int
+type Link[T Gen] struct {
+	Head  *Node[T]
+	Tail  *Node[T]
+	Count int
 }
 
-// Puts a new value at the Tail end of the list
+// Add puts a new value at the Head of the list
 func (l *Link[T]) Add(val T) {
-	myNode := node[T]{0, l.head}
-	l.count++
-	l.head = &myNode
+	myNode := &Node[T]{val, l.Head}
+	l.Head = myNode
+	if l.Tail == nil {
+		l.Tail = myNode
+	}
+	l.Count++
 }
 
-// Inserts a new value at a given index, pushing the existing value at that index to the next index spot, and so on. Insert may ONLY target indices that are currently in use. In other words, if you have 5 elements in your list, you may insert at any index between 0 and 4 inclusive. Index 5 would be considered out of bounds as it is not currently in use during the insertion process. Any index less than zero or equal to or greater than Count should throw an index out of bounds exception.
-func (l *Link[T]) Insert(val T, idx int) {
-	myNode := node[T]{val}
-	curNode := l.head
+// Insert inserts a new value at a given index
+func (l *Link[T]) Insert(val T, idx int) error {
+	if idx < 0 || idx >= l.Count {
+		return fmt.Errorf("index %d is out of bounds for Count %d", idx, l.Count)
+	}
 
-	// [1,3,4]
-	// val = 2
-	// idx = 1
+	if idx == 0 {
+		l.Add(val)
+		return nil
+	}
+
+	curNode := l.Head
 	for i := 0; i < idx-1; i++ {
 		curNode = curNode.next
 	}
-	curNode.next = &myNode
+
+	myNode := &Node[T]{val, curNode.next}
+	curNode.next = myNode
+	if myNode.next == nil {
+		l.Tail = myNode
+	}
+	l.Count++
+	return nil
 }
 
-// Returns the value at the given index. Any index less than zero or equal to or greater than Count should throw an index out of bounds exception.
-func (l *Link[T]) Get(idx int) T {
-	curNode := l.head
-
-	if idx <= 0 || idx == l.count || idx >= l.count {
-		return
+// Get returns the value at the given index
+func (l *Link[T]) Get(idx int) (T, error) {
+	var zero T
+	if idx < 0 || idx >= l.Count {
+		return zero, fmt.Errorf("index %d is out of bounds for Count %d", idx, l.Count)
 	}
 
+	curNode := l.Head
 	for i := 0; i < idx; i++ {
 		curNode = curNode.next
 	}
-
-	return curNode.value
+	return curNode.value, nil
 }
 
-// Removes and returns the first value in the list
-func (l *Link[T]) Remove() T {
-
-	myNode := node[T]{0, l.head}
-	l.count--
-	l.head = nil
-	l.head = &myNode
-
-	return l.head.value
+// Remove removes and returns the first value in the list
+func (l *Link[T]) Remove() (T, error) {
+	var zero T
+	if l.Head == nil {
+		return zero, fmt.Errorf("list is empty")
+	}
+	val := l.Head.value
+	l.Head = l.Head.next
+	l.Count--
+	if l.Head == nil {
+		l.Tail = nil
+	}
+	return val, nil
 }
 
-// Removes and returns the last value in the list
-func (l *Link[T]) RemoveLast() T {
+// RemoveLast removes and returns the last value in the list
+func (l *Link[T]) RemoveLast() (T, error) {
+	var zero T
+	if l.Head == nil {
+		return zero, fmt.Errorf("list is empty")
+	}
 
-	myNode := node[T]{0, l.tail}
-	l.count--
-	l.tail = nil
-	l.tail & myNode
+	if l.Head.next == nil {
+		val := l.Head.value
+		l.Head = nil
+		l.Tail = nil
+		l.Count--
+		return val, nil
+	}
 
-	return l.tail.value
+	curNode := l.Head
+	for curNode.next.next != nil {
+		curNode = curNode.next
+	}
+
+	val := curNode.next.value
+	curNode.next = nil
+	l.Tail = curNode
+	l.Count--
+	return val, nil
 }
 
-// Removes and returns the value at a given index. Any index less than zero or equal to or greater than Count should throw an index out of bounds exception.
-func (l *Link[T]) RemoveAt(idx int) T {
-	var t T
-	return t
+// RemoveAt removes and returns the value at a given index
+func (l *Link[T]) RemoveAt(idx int) (T, error) {
+	var zero T
+	if idx < 0 || idx >= l.Count {
+		return zero, fmt.Errorf("index %d is out of bounds for Count %d", idx, l.Count)
+	}
+
+	if idx == 0 {
+		return l.Remove()
+	}
+
+	curNode := l.Head
+	for i := 0; i < idx-1; i++ {
+		curNode = curNode.next
+	}
+
+	removedNode := curNode.next
+	curNode.next = removedNode.next
+	if curNode.next == nil {
+		l.Tail = curNode
+	}
+	l.Count--
+	return removedNode.value, nil
 }
 
-// Removes all values in the list.
+// Clear removes all values in the list
 func (l *Link[T]) Clear() {
-	l.head = nil
+	l.Head = nil
+	l.Tail = nil
+	l.Count = 0
 }
 
-// Searches for a value in the list and returns the first index of that value when found. If the key is not found in the list, the method returns -1.
+// Search searches for a value and returns the first index or -1 if not found
 func (l *Link[T]) Search(val T) int {
-
-	return 1
+	curNode := l.Head
+	for i := 0; i < l.Count; i++ {
+		if curNode.value == val {
+			return i
+		}
+		curNode = curNode.next
+	}
+	return -1
 }
 
-// An override method that creates and returns a string representation of all the values in the list. The string must be in the format of “v0, v1, v2, .., vn-1” where n-1 is the last index in the list. An empty list should return an empty string (but not null). While every value in the string is separated by a comma and space, the string must NOT have any unnecessary commas or spaces at the beginning or end.
+// ToString returns a string representation of the list values
 func (l *Link[T]) ToString() string {
-
-	return ""
+	var values []string
+	current := l.Head
+	for current != nil {
+		values = append(values, fmt.Sprintf("%v", current.value))
+		current = current.next
+	}
+	return strings.Join(values, ", ")
 }
 
-// Create a single linked list
-func singleLinkList[T gen]() Link[T] {
+// NewSingleLinkList creates and returns a new single linked list
+func NewSingleLinkList[T Gen]() Link[T] {
 	return Link[T]{nil, nil, 0}
-}
-
-// Create a double linked list
-func doubleLinkList() {
-
 }
