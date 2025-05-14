@@ -54,3 +54,13 @@ func (e *Queue[T]) Contains(val T) bool {
 	}
 	return false
 }
+
+/*
+* Contains
+*
+* create a current node that tracks the head
+* check if there is a value in either the first or the last spot return false if so
+* check if either the head or the tail is the val if so return
+* loop through the list and check every spot if its the val return true if so
+* once loop has finnished and nothing was found just return false
+ */
