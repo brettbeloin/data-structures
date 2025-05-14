@@ -5,28 +5,27 @@ import (
 )
 
 type Stack[T LinkedList.Gen] struct {
-	head  *LinkedList.Node[T]
-	tail  *LinkedList.Node[T]
-	count int
+	list LinkedList.Link[T]
 }
 
 // Find and return the value at the specified index
-func (n *Stack[T]) Get(idx int) T {
-	var x T
-	return x
+func (n *Stack[T]) Get(idx int) (T, error) {
+	return n.list.Get(idx)
 }
 
 // Returns true if the value exists in the stack, otherwise, false.
 func (n *Stack[T]) Contains(val T) bool {
-	curNode := n.head
+	curNode := n.list.Head
 
-	if curNode.Value == val {
-		return true
-	} else if n.tail.Value == val {
+	if n.list.Head == nil || n.list.Tail == nil {
+		return false
+	}
+
+	if n.list.Head.Value == val || n.list.Tail.Value == val {
 		return true
 	}
 
-	for i := 0; i < n.count; i++ {
+	for i := 0; i < n.list.Count; i++ {
 		curNode = curNode.Next
 
 		if curNode.Value == val {
@@ -38,23 +37,20 @@ func (n *Stack[T]) Contains(val T) bool {
 
 // Return the item on the top (stack) without removing it
 func (n *Stack[T]) Peek() T {
-	var x T
-	return x
+	return n.list.Head.Value
 }
 
 // remove and return the top  item
-func (n *Stack[T]) Pop() T {
-	var x T
-	return x
+func (n *Stack[T]) Pop() {
+	n.list.Remove()
 }
 
 // add item
-func (n *Stack[T]) Push() T {
-	var x T
-	return x
+func (n *Stack[T]) Push(val T) {
+	n.list.Add(val)
 }
 
 func NewStack[T LinkedList.Gen]() *Stack[T] {
 	list := LinkedList.Link[T]{}
-	return &Stack[T]{head: list.Head, tail: list.Tail}
+	return &Stack[T]{list: list}
 }

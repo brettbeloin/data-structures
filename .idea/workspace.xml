@@ -7,7 +7,13 @@
     <list default="true" id="06ecba73-5eb1-4650-b995-13b57c9fcac6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../../../../csc250/lab/working/L3RecurseBattle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../csc250/lab/working/L3RecurseBattle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../csc250/lab/working/L3RecurseBattle/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../csc250/lab/working/L3RecurseBattle/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$" beforeDir="false" afterPath="$PROJECT_DIR$" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../exercis/working/E1Link" beforeDir="false" afterPath="$PROJECT_DIR$/../../../exercis/working/E1Link" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../exercis/working/E1Link/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../exercis/working/E1Link/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LinkedList/list.go" beforeDir="false" afterPath="$PROJECT_DIR$/LinkedList/list.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StackQueue/stack.go" beforeDir="false" afterPath="$PROJECT_DIR$/StackQueue/stack.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StackQueue/stack_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/StackQueue/stack_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,24 +33,58 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.GoLinterPluginOnboarding": "true",
-    "RunOnceActivity.GoLinterPluginStorageMigration": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "git-widget-placeholder": "master",
-    "go.import.settings.migrated": "true",
-    "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "/home/brett/nc/yearTwo/csc252/exercis/working/E1Link",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Go Build.go build github.com/brettbeloin/data-structures.executor&quot;: &quot;Debug&quot;,
+    &quot;Go Test.TestContains in github.com/brettbeloin/data-structures/StackQueue.executor&quot;: &quot;Debug&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.GoLinterPluginOnboarding&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.GoLinterPluginStorageMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/brett/nc/yearTwo/csc252/labs/working/l1&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager" selected="Go Test.TestContains in github.com/brettbeloin/data-structures/StackQueue">
+    <configuration name="go build github.com/brettbeloin/data-structures" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
+      <module name="E1Link" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="github.com/brettbeloin/data-structures" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestContains in github.com/brettbeloin/data-structures/StackQueue" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="E1Link" />
+      <working_directory value="$PROJECT_DIR$/StackQueue" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="github.com/brettbeloin/data-structures/StackQueue" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestContains\E$" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Go Build.go build github.com/brettbeloin/data-structures" />
+      <item itemvalue="Go Test.TestContains in github.com/brettbeloin/data-structures/StackQueue" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Test.TestContains in github.com/brettbeloin/data-structures/StackQueue" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -68,5 +108,16 @@
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/StackQueue/stack.go</url>
+          <line>19</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

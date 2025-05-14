@@ -21,7 +21,7 @@ type Link[T Gen] struct {
 	Count int
 }
 
-// Add puts a new value at the Head of the list
+// Add puts a new Value at the Head of the list
 func (l *Link[T]) Add(val T) {
 	myNode := &Node[T]{val, l.Head}
 	l.Head = myNode
@@ -31,7 +31,7 @@ func (l *Link[T]) Add(val T) {
 	l.Count++
 }
 
-// Insert inserts a new value at a given index
+// Insert inserts a new Value at a given index
 func (l *Link[T]) Insert(val T, idx int) error {
 	if idx < 0 || idx >= l.Count {
 		return fmt.Errorf("index %d is out of bounds for Count %d", idx, l.Count)
@@ -44,19 +44,19 @@ func (l *Link[T]) Insert(val T, idx int) error {
 
 	curNode := l.Head
 	for i := 0; i < idx-1; i++ {
-		curNode = curNode.next
+		curNode = curNode.Next
 	}
 
-	myNode := &Node[T]{val, curNode.next}
-	curNode.next = myNode
-	if myNode.next == nil {
+	myNode := &Node[T]{val, curNode.Next}
+	curNode.Next = myNode
+	if myNode.Next == nil {
 		l.Tail = myNode
 	}
 	l.Count++
 	return nil
 }
 
-// Get returns the value at the given index
+// Get returns the Value at the given index
 func (l *Link[T]) Get(idx int) (T, error) {
 	var zero T
 	if idx < 0 || idx >= l.Count {
@@ -65,19 +65,20 @@ func (l *Link[T]) Get(idx int) (T, error) {
 
 	curNode := l.Head
 	for i := 0; i < idx; i++ {
-		curNode = curNode.next
+		curNode = curNode.Next
 	}
-	return curNode.value, nil
+	return curNode.Value, nil
 }
 
-// Remove removes and returns the first value in the list
+// Remove removes and returns the first Value in the list
 func (l *Link[T]) Remove() (T, error) {
 	var zero T
 	if l.Head == nil {
 		return zero, fmt.Errorf("list is empty")
 	}
-	val := l.Head.value
-	l.Head = l.Head.next
+
+	val := l.Head.Value
+	l.Head = l.Head.Next
 	l.Count--
 	if l.Head == nil {
 		l.Tail = nil
@@ -85,15 +86,15 @@ func (l *Link[T]) Remove() (T, error) {
 	return val, nil
 }
 
-// RemoveLast removes and returns the last value in the list
+// RemoveLast removes and returns the last Value in the list
 func (l *Link[T]) RemoveLast() (T, error) {
 	var zero T
 	if l.Head == nil {
 		return zero, fmt.Errorf("list is empty")
 	}
 
-	if l.Head.next == nil {
-		val := l.Head.value
+	if l.Head.Next == nil {
+		val := l.Head.Value
 		l.Head = nil
 		l.Tail = nil
 		l.Count--
@@ -101,18 +102,18 @@ func (l *Link[T]) RemoveLast() (T, error) {
 	}
 
 	curNode := l.Head
-	for curNode.next.next != nil {
-		curNode = curNode.next
+	for curNode.Next.Next != nil {
+		curNode = curNode.Next
 	}
 
-	val := curNode.next.value
-	curNode.next = nil
+	val := curNode.Next.Value
+	curNode.Next = nil
 	l.Tail = curNode
 	l.Count--
 	return val, nil
 }
 
-// RemoveAt removes and returns the value at a given index
+// RemoveAt removes and returns the Value at a given index
 func (l *Link[T]) RemoveAt(idx int) (T, error) {
 	var zero T
 	if idx < 0 || idx >= l.Count {
@@ -125,16 +126,16 @@ func (l *Link[T]) RemoveAt(idx int) (T, error) {
 
 	curNode := l.Head
 	for i := 0; i < idx-1; i++ {
-		curNode = curNode.next
+		curNode = curNode.Next
 	}
 
-	removedNode := curNode.next
-	curNode.next = removedNode.next
-	if curNode.next == nil {
+	removedNode := curNode.Next
+	curNode.Next = removedNode.Next
+	if curNode.Next == nil {
 		l.Tail = curNode
 	}
 	l.Count--
-	return removedNode.value, nil
+	return removedNode.Value, nil
 }
 
 // Clear removes all values in the list
@@ -144,14 +145,14 @@ func (l *Link[T]) Clear() {
 	l.Count = 0
 }
 
-// Search searches for a value and returns the first index or -1 if not found
+// Search searches for a Value and returns the first index or -1 if not found
 func (l *Link[T]) Search(val T) int {
 	curNode := l.Head
 	for i := 0; i < l.Count; i++ {
-		if curNode.value == val {
+		if curNode.Value == val {
 			return i
 		}
-		curNode = curNode.next
+		curNode = curNode.Next
 	}
 	return -1
 }
@@ -161,8 +162,8 @@ func (l *Link[T]) ToString() string {
 	var values []string
 	current := l.Head
 	for current != nil {
-		values = append(values, fmt.Sprintf("%v", current.value))
-		current = current.next
+		values = append(values, fmt.Sprintf("%v", current.Value))
+		current = current.Next
 	}
 	return strings.Join(values, ", ")
 }
