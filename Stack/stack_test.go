@@ -1,4 +1,4 @@
-package StackQueue
+package Stack
 
 import (
 	"testing"
@@ -12,19 +12,6 @@ func TestPush(t *testing.T) {
 
 	if f != e {
 		t.Errorf("Expected: %d, Foun: %d", e, f)
-	}
-
-}
-
-func TestContains(t *testing.T) {
-	w := NewStack[int]()
-	w.Push(10)
-	w.Push(20)
-	w.Push(30)
-	e := true
-
-	if w.Contains(20) != e {
-		t.Errorf("Exptexted: %v, Found: %v", e, w.Contains(20))
 	}
 
 }
@@ -53,4 +40,17 @@ func TestGet(t *testing.T) {
 	if f != e {
 		t.Errorf("Expected: %d, Found: %d", e, f)
 	}
+}
+
+func TestContains(t *testing.T) {
+	w := NewStack[int]()
+	w.Push(10)
+	w.Push(20)
+	w.Push(30)
+	e := true
+
+	if w.Contains(20) != e {
+		t.Errorf("Exptexted: %v, Found: %v", e, w.Contains(20))
+	}
+
 }
